@@ -47,5 +47,46 @@ The OWASP Top 10 is a list of the most critical security risks to web applicatio
    - Unnecessary features enabled (e.g. ports, services, pages, accounts, privileges)...
 
 6. **Vulnerable and Outdated Components:**
-   
-   
+   - Using components with known vulnerabilities
+   - Not updating components regularly
+   - Not monitoring for new vulnerabilities in used components
+
+7. **Identification and Authentication Failures:**
+   - **Identification:** identifying a particular user (often through a username or email)
+   - **Authentication:** process of validating that a user is who they claim to be (proof of identity, often through a password, token, or biometric data)
+   - **Authorization:** process of determining what an authenticated user is allowed to do (permissions, roles, access control)
+   - User session or authentication tokens are not properly validated
+     (session ID needs ot be invalidated after logout)
+
+8. **Software and Data Integrity Failures:**
+   - Code and infrastructure that does not protect against integrity violations
+   - Untrusted software updates and CI/CD pipelines
+   - Insecure deserialization
+   - Using vulnerable components vs **source** of component (e.g. Component: Plugin, Source of component: Repository, Registry, etc.)
+
+9. **Security Logging and Monitoring Failures:**
+   - **Logging:** recording security-relevant events (e.g. failed login attempts, access control violations, etc.)
+   - **Monitoring:** analyzing logs and other data to detect and respond to security incidents
+   - Without logs, you can't do monitoring efficiently
+   - Without monitoring, you can't alert and respond to incidents efficiently
+
+10. **Server-Side Request Forgery (SSRF):**
+   - SSRF is a vulnerability that allows an attacker to induce the server-side application to make HTTP requests to an arbitrary domain of the attacker's choosing. This can lead to unauthorized access to internal systems.
+   - SSRF attacks circumvent firewall, VPN or network access control lists
+     - Port scan internal servers (e.g. for an open port and HTTP request with SSRF payload - which can be used to access internal resources)
+   - Or Access Metadata storage in a cloud provider
+
+
+## Security is Layered
+
+Each layer addresses different aspects of security, and together they provide a comprehensive defense against potential threats.
+Access Management, Network Security, Application Security, Data Security, Endpoint Security, Physical Security, and Security Awareness Training are all important layers in a security strategy.
+- Data
+- App
+- Host
+- Network
+- Physical
+- Policy and Procedures
+
+**In DevSecOps:** we automate security testing, vulnerability scanning, code analysis, compliance checks, ...
+It gives you visibility of the security posture of your application, infrastructure, system.

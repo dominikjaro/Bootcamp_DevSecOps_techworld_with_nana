@@ -69,3 +69,26 @@ sudo gitlab-runner register \
 sudo gitlab-runner status
 sudo gitlab-runner start # Start the GitLab runner service
 ```
+
+---
+
+### We execute the build_job from the pipeline on our gitlab runner instance:
+
+- We reduce build time because docker layers are cached on the GitLab runner instance.
+
+Specify the tags for the GitLab runner that should execute this job:
+
+```yaml
+build_image:
+  stage: build
+  tags:
+    - shell
+    - ec2
+  before_script:
+    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  script:
+    - IMAGE_NAME="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/juice-shop"
+    - docker build -t $IMAGE_NAME:$CI_COMMIT_SHA -t $IMAGE_NAME:latest .
+    - docker push $IMAGE_NAME:$CI_COMMIT_SHA
+    - docker push $IMAGE_NAME:latest
+```

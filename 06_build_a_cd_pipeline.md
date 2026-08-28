@@ -64,4 +64,8 @@ sudo gitlab-runner register \
 --url "https://gitlab.com/" \
 --token "registration-token-here" \
 --executor "shell"
+
+# Check the status
+sudo gitlab-runner status
+sudo gitlab-runner start # Start the GitLab runner service
 ```

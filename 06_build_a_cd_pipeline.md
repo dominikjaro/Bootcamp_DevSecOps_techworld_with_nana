@@ -30,9 +30,9 @@ deploy_image:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
   script:
-    - ssh -o StrictHostKeyChecking=no $SERVeR_USER@$SERVER_IP "docker pull $IMAGE_NAME:latest" # By setting -o StrictHostKeyChecking=no you I disable the "Are you sure you want to continue connecting (yes/no)?"
-    - ssh -o StrictHostKeyChecking=no $SERVeR_USER@$SERVER_IP "docker stop juice-shop || true && docker rm juice-shop || true" # || true forces the pipeline to ignore the failure error and keeps going in case the commmand before fails
-    - ssh -o StrictHostKeyChecking=no $SERVeR_USER@$SERVER_IP  "docker run -d --name juice-shop -p 3000:3000 $IMAGE_NAME:latest"
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $IMAGE_NAME:latest" # By setting -o StrictHostKeyChecking=no you I disable the "Are you sure you want to continue connecting (yes/no)?"
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker stop juice-shop || true && docker rm juice-shop || true" # || true forces the pipeline to ignore the failure error and keeps going in case the commmand before fails
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP  "docker run -d --name juice-shop -p 3000:3000 $IMAGE_NAME:latest"
 ```
 
 When we creat the EC2 instance for the GitLab runner it needs some higher specs, so we used:

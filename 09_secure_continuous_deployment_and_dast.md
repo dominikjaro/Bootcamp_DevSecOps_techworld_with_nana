@@ -23,3 +23,11 @@
 - Attach Service Account to the VM with the necessary IAM roles like (roles/osconfig.instanceDelegate)
 
 GCP separates specific features into IAP & OS Login.
+
+---
+## Security Measures and Continuous Security Imrpovements
+
+1. Created AWS roles for the EC2 instances `gitlab-runner server` AND the `app-server` (permissions: `SSMFullAccess, ContainerRegistryFullAccess, SSMManagedInstanceCore`)
+2. Installed and configured SSM Agent on all EC2 instances to enable management through AWS Systems Manager.
+   1. to confirm run `sudo systemctl status snap.amazon-ssm-agent.amazon-ssm-agent.service`
+3. 

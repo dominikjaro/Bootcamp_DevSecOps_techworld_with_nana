@@ -30,4 +30,8 @@ GCP separates specific features into IAP & OS Login.
 1. Created AWS roles for the EC2 instances `gitlab-runner server` AND the `app-server` (permissions: `SSMFullAccess, ContainerRegistryFullAccess, SSMManagedInstanceCore`)
 2. Installed and configured SSM Agent on all EC2 instances to enable management through AWS Systems Manager.
    1. to confirm run `sudo systemctl status snap.amazon-ssm-agent.amazon-ssm-agent.service`
-3. 
+3. Removed unnecessary variables (as we don't use ssh anymore)
+4. Removed the GitLab user in AWS
+
+## Dynamic Application Security Testing (DAST)
+

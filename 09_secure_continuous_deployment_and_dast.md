@@ -35,3 +35,20 @@ GCP separates specific features into IAP & OS Login.
 
 ## Dynamic Application Security Testing (DAST)
 
+- No knowledge of the internal code or design of application
+- Testing based on inputs and outputs, simulating real-world interactions
+- We are interacting with app's UI like every other user
+
+- **NOTE:** DAST tests are executed in one of the pre-production environments and if crictical security issues are found the CI/CD pipeline is aborted
+
+### ZAP: BaseLine VS Full Scan
+
+**Baseline:**
+- Quick and lightweight - aiming to provide a rapid overview of vulnerabilities without conducting an exhaustive analysis
+
+**Full Scan:**
+- Scripts performs actual attacks
+- In-depth analysis, including unique attack scenarios
+- Take much longer
+- Deploy it on its own dedicated environment - at a specific schedule time
+

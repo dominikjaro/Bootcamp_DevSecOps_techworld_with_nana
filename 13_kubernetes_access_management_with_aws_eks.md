@@ -60,3 +60,11 @@ For example:
 
 **NOTE:** In DevOps everything should happen in an **automated way via CI/CD pipelines** So even administrator, should not need to change anything manually. Every change should go through Git (GitOps)
 
+### Mapping from AWS to Kubernetes
+
+**What is "aws-auth" ConfigMap?**
+
+- The aws-auth COnfifMap is automatically created and applied to your cluster when you create a managed node group or when you create a node group using eksctl.
+- It is initially created to allow nodes to joint the cluster
+- You also use this ConfigMap to add role-based access control RBAC access to IAM principals
+- Each entry maps an IAM role to a username and set of groups

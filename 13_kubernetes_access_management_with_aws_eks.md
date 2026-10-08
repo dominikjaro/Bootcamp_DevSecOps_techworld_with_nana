@@ -68,3 +68,17 @@ For example:
 - It is initially created to allow nodes to joint the cluster
 - You also use this ConfigMap to add role-based access control RBAC access to IAM principals
 - Each entry maps an IAM role to a username and set of groups
+
+We assume the IAM role using the AWS Security Token Service (STS) and export the temporary credentials as environment variables. This allows us to interact with the AWS resources using the assumed role.
+
+```bash
+eval $(aws sts assume-role --role-arn <YOUR_AWS_ROLE_ARN> --role-session-name <SESSION_NAME> | jq -r '.Credentials | "export AWS_ACCESS_KEY_ID=\(.AccessKeyId) AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey) AWS_SESSION_TOKEN=\(.SessionToken)"')
+```
+
+### Configure kubectl
+
+Configure kubectl: make sure you're logged in with the correct AWS profile and run the following command to update your kubeconfig
+
+```bash
+aws eks update-kubeconfig --region <region> --name <cluster_name> --alias <alias_name>
+```
